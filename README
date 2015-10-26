@@ -1,0 +1,65 @@
+Sentence Aligner presented in :
+
+Fabienne Braune, Alexander Fraser (2010). Improved Unsupervised Sentence Alignment for Symmetrical and Asymmetrical Parallel Corpora. In Proceedings of the 23rd International Conference on Computational Linguistics (COLING) - Posters, Beijing, China, August. 
+
+If you have any problems using this software please contact : 
+http://sourceforge.net/projects/gargantua/
+gargantua-support@lists.sourceforge.net
+
+This sentence aligner is optimized for the Europarl tagging format. 
+If your corpus is split into chapters, speakers or paragraphs, please convert your tags to the Europarl format.
+
+-----------------------------
+0. Clean up if already used
+-----------------------------
+chmod u+x clean.sh
+./clean.sh
+
+----------------------
+1. Prepare data
+-----------------------
+a) The sentences to be aligned need to be into pairs of files with the the same name and the extension .txt.
+b) Each file in one langauge has to have a corresponding file (with the same name) in the other langauge. In order to remove documents that are in one langauge only you can use the perl script remove-non-parallel-files.perl which comes with the aligner.
+c) Each file has to contain one sentence per line and spaces between words.
+d) In order to sentence split and tokenize files, the split-sentences and tokenize script provided with the Europarl corpus can be used:
+
+http://www.statmt.org/europarl/
+
+Important note 1: it is recommended to first sentence split the corpus in order to obtain the untokenized data. In a second step tokenize the sentence split files in order to obtain the tokenized data.
+
+-----------------------
+2. Prepare filesystem
+-----------------------
+In the directory SentenceAligner make the following directories:
+
+chmod u+x prepare-filesystem.sh
+./prepare-filesystem.sh
+
+Move (or link) your data in the corresponding directories:
+
+mv (ln -s) your_untokenized_source_language_files/* corpus_to_align/source_language_corpus_untokenized
+mv (ln -s) your_untokenized_target_language_files/* corpus_to_align/target_language_corpus_untokenized
+mv (ln -s) your_tokenized_source_language_files/* corpus_to_align/source_language_corpus_tokenized
+mv (ln -s) your_tokenized_target_language_files/* corpus_to_align/target_language_corpus_tokenized
+
+Important note 2: If the data remains untokenized (i.e the *_tokenized and *_untokenized files are the same) put the data in ALL directories.
+
+---------------------
+3. Prepare Data
+---------------------
+chmod u+x prepare-data.sh (includes lowercasing the data)
+./prepare-data.sh
+
+---------------------------------------------------------
+4. Compile source code
+---------------------------------------------------------
+cd src
+make clean
+make
+
+
+------------------------
+5. Run Aligner
+------------------------
+./sentence-aligner
+										
