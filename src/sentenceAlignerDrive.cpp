@@ -177,9 +177,7 @@ int main() {
     // or absence of tags, the whole document is aligned
     stack<Data> paragraphs = Reader::splitEuroparlDocumentIntoParagraphs(
         Utilities::findEuroparlFile(dest_source, filename).c_str(),
-        filename.c_str(),
-        Utilities::findEuroparlFile(dest_target, filename).c_str(),
-        filename.c_str());
+        Utilities::findEuroparlFile(dest_target, filename).c_str());
 
     cout << "Making sentence length based alignment..." << endl;
 

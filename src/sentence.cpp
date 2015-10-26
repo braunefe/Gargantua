@@ -5,34 +5,34 @@
 using namespace std;
 
 Sentence::Sentence(long int position, int charlength, int wordlength,
-                   vector<long int> token) {
+                   const vector<long int>& token) {
   setSentence(position, charlength, wordlength, token);
 }
 
 void Sentence::setSentence(long int position, int charlength, int wordlength,
                            vector<long int> t) {
-  sPosition = position;
-  sLengthChar = charlength;
-  sLengthWords = wordlength;
-  token_ints = t;
+  _sPosition = position;
+  _sLengthChar = charlength;
+  _sLengthWords = wordlength;
+  _token_ints = t;
 }
 
-long int Sentence::getPosition() const { return sPosition; }
+long int Sentence::getPosition() const { return _sPosition; }
 
-void Sentence::setPosition(long int p) { sPosition = p; }
+void Sentence::setPosition(long int p) { _sPosition = p; }
 
-int Sentence::getCharLength() const { return sLengthChar; }
+int Sentence::getCharLength() const { return _sLengthChar; }
 
-void Sentence::setCharLength(int l) { sLengthChar = l; }
+void Sentence::setCharLength(int l) { _sLengthChar = l; }
 
-int Sentence::getWordLength() const { return sLengthWords; }
+int Sentence::getWordLength() const { return _sLengthWords; }
 
-void Sentence::setWordLength(int l) { sLengthWords = l; }
+void Sentence::setWordLength(int l) { _sLengthWords = l; }
 
-vector<string> Sentence::getToken() const { return token; }
+vector<string> Sentence::getToken() const { return _token; }
 
-void Sentence::setToken(vector<string> t) { token = t; }
+void Sentence::setToken(vector<string> t) { _token = t; }
 
-void Sentence::setTokenInts(vector<long int> t_i) { token_ints = t_i; }
+void Sentence::setTokenInts(vector<long int> t_i) { _token_ints = t_i; }
 
-vector<long int> Sentence::getTokenInts() const { return token_ints; }
+vector<long int> Sentence::getTokenInts() const { return _token_ints; }

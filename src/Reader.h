@@ -47,13 +47,13 @@ class Reader {
 	static void numberData(string path_source, string path_target, string dest_source, string dest_target);
 
 	//Splits an Europarl document into paragraphs
-	static stack<Data> splitEuroparlDocumentIntoParagraphs( const char * path1, const char * filename1,  const char * path2, const char * filename2);
+	static stack<Data> splitEuroparlDocumentIntoParagraphs(const char * filename1, const char * filename2);
 
 	//Splits Europarl document into speakers
-	static stack<Data> splitEuroparlDocumentIntoSpeakers( const char * path1, const char * filename1,  const char * path2, const char * filename2);
+	static stack<Data> splitEuroparlDocumentIntoSpeakers(const char * filename1, const char * filename2);
 
 	//Splits Europarl document into chapters
-	static stack<Data> splitEuroparlDocumentIntoChapters( const char * path1, const char * filename1,  const char * path2, const char * filename2);
+	static stack<Data> splitEuroparlDocumentIntoChapters(const char * filename1, const char * filename2);
 
 	//splits all Europarl documents into paragraphs
 	static void splitEuroparlDataIntoParagraphs( string source_path, string target_path );

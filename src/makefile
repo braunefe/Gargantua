@@ -5,7 +5,7 @@ OBJS = utilities.o reader.o writer.o sentence.o data.o lengthDistributions.o lex
 #Office setup
 CC = g++
 DEBUG = -g 
-CFLAGS = -std=c++11 -O2 -fopenmp -Wall  -c $(DEBUG)
+CFLAGS = -std=c++11 -O2 -fopenmp -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -c $(DEBUG) 
 LFLAGS = -Wall $(DEBUG) -fopenmp -ltcmalloc
 INCLUDE_PATH =  /usr/include/
 LIB_PATH = /usr/lib/
@@ -37,9 +37,9 @@ sentence-aligner : $(OBJS)
 #AlignerRun : $(OBJS)
 #	$(CC) $(LFLAGS) $(OBJS) -o AlignerRun -L $(LIB_PATH) -Wl,-rpath,/usr/lib/gcc/x86_64-redhat-linux/4.1.2 -l $(REGEX_LIB) -l $(SYS_LIB) -l $(FILESYS_LIB) -l $(SERIAL_LIB)
 
+#Cell.h Chunk.h Evaluation.h Alignment_all.h
 
 sentenceAlignerDrive.o : Utilities.h Reader.h Data.h Sentence.h Aligner.h Types.h sentenceAlignerDrive.cpp
-#Cell.h Chunk.h Evaluation.h Alignment_all.h
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) sentenceAlignerDrive.cpp 
 
 #subsentence_alignment.o :  Data.h Sentence.h Paragraph.h Chunk.h Subsentence_alignment.h subsentence_alignment.cpp
@@ -61,10 +61,10 @@ aligner.o : Data.h Sentence.h Cell.h Chunk.h LengthAlignment.h Aligner.h Types.h
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) aligner.cpp
 
 chunk.o : Chunk.h Types.h chunk.cpp
-	$(CC) $(CFLAGS) chunk.cpp 
+	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) chunk.cpp 
 
 cell.o : Cell.h Types.h cell.cpp
-	$(CC) $(CFLAGS) cell.cpp 
+	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) cell.cpp 
 
 serializers.o : Serializers.h Types.h serializers.cpp LengthDistributions.h
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) serializers.cpp 
@@ -79,7 +79,7 @@ data.o : Data.h data.cpp Sentence.h   Types.h
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) data.cpp 
 
 sentence.o : Sentence.h Types.h sentence.cpp 
-	$(CC) $(CFLAGS) sentence.cpp
+	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) sentence.cpp
 
 writer.o : Writer.h Types.h writer.cpp
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) writer.cpp
@@ -88,7 +88,7 @@ reader.o : Reader.h Types.h reader.cpp
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) reader.cpp	
 
 utilities.o : Utilities.h Types.h LengthDistributions.h utilities.cpp
-	$(CC) $(CFLAGS) utilities.cpp
+	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) utilities.cpp
 
 clean:
-	rm *.o *~ alignerRun
+	rm *.o *~ sentence-aligner

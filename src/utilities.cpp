@@ -51,7 +51,6 @@ float Utilities::stof(string s)  // convert string to float
 stack<string> Utilities::findAllFiles(const bfs::path& p) {
   // vector to hold filenames
   stack<string> filenames;
-  string filename_complete;
   string file_name;
 
   std::cout << "looking for files in " << p << std::endl;
@@ -63,7 +62,7 @@ stack<string> Utilities::findAllFiles(const bfs::path& p) {
   // if path is not a directory
   else if (!bfs::is_directory(p)) {
     //		filename_complete = p.native_file_string();
-    filename_complete = p.string();
+    string filename_complete = p.string();
 
     // get filename without .txt extensions
     size_t pos = filename_complete.rfind(".");  // position of last . in string
@@ -81,7 +80,7 @@ stack<string> Utilities::findAllFiles(const bfs::path& p) {
       findAllFiles(*iter);
     } else {
       //			string filename_complete = iter->leaf();
-      string filename_complete = iter->path().filename().string();
+      const string filename_complete = iter->path().filename().string();
 
       // get filename without txt extension
       size_t pos = filename_complete.rfind(".");
