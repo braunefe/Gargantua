@@ -282,6 +282,7 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
     for (const auto &sent : target_sentences) {
       // ignore insertions and deletions
       if (sent.getPosition() == -1) {
+    	  cout << "Skipping source " << sent.getPosition() << endl;
       } else {
         pair<long int, vector<string> > source_entry(sent.getPosition(),
                                                      sent.getToken());
@@ -378,7 +379,7 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
             const auto stoks = source_sentences_map.find(sentence_id);
             if (stoks == source_sentences_map.end()) {
               cout << "Could not find source sentence_id " << sentence_id << endl;
-              abort();
+//              abort();
             } else {
 				for (const auto& tok : stoks->second) {
 				  fout1 << tok << " ";
@@ -412,7 +413,7 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
             const auto ttoks = target_sentences_map.find(sentence_id);
             if (ttoks == target_sentences_map.end()) {
               cout << "Could not find sentence_id " << sentence_id << endl;
-              abort();
+//              abort();
             } else {
             	for (const auto& tok : ttoks->second) {
                     fout2 << tok << " ";
