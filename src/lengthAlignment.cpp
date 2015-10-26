@@ -13,23 +13,23 @@ float LengthAlignment::distanceFunctionMoore(
     const LengthDistributions& length_distributions, int x1, int y1, int x2,
     int y2) {
   // prior table of Moore
-  float prior11 = 0.94;
-  float prior12 = 0.02;
-  float prior21 = 0.02;
-  float prior10 = 0.01;
-  float prior01 = 0.01;
+  const float prior11 = 0.94;
+  const float prior12 = 0.02;
+  const float prior21 = 0.02;
+  const float prior10 = 0.01;
+  const float prior01 = 0.01;
 
   if (x2 == 0 && y2 == 0) {
     if (x1 == 0)  // insertion
     {
-      float relft =
+      const float relft =
           length_distributions.relative_frequencies_of_target.find(y1)->second;
       return -log(relft) - log(prior01);
     }
 
     else if (y1 == 0)  // deletion
     {
-      float relfs =
+      const float relfs =
           length_distributions.relative_frequencies_of_source.find(x1)->second;
       return -log(relfs) - log(prior10);
     }
@@ -37,9 +37,10 @@ float LengthAlignment::distanceFunctionMoore(
     else  // substitution
 
     {
-      float relfs =
+      const float relfs =
           length_distributions.relative_frequencies_of_source.find(x1)->second;
-      float distanceMeasure = length_distributions.distanceMeasurePoiss(x1, y1);
+      const float distanceMeasure =
+          length_distributions.distanceMeasurePoiss(x1, y1);
       return distanceMeasure - log(relfs) - log(prior11);
     }
 
@@ -47,27 +48,27 @@ float LengthAlignment::distanceFunctionMoore(
 
   else if (x2 == 0)  // expansion
   {
-    float relfs =
+    const float relfs =
         length_distributions.relative_frequencies_of_source.find(x1)->second;
-    float distanceMeasure =
+    const float distanceMeasure =
         length_distributions.distanceMeasurePoiss(x1, y1 + y2);
     return distanceMeasure - log(relfs) - log(prior12);
   }
 
   else if (y2 == 0)  // contraction
   {
-    float relfs1 =
+    const float relfs1 =
         length_distributions.relative_frequencies_of_source.find(x1)->second;
-    float relfs2 =
+    const float relfs2 =
         length_distributions.relative_frequencies_of_source.find(x2)->second;
-    float distanceMeasure =
+    const float distanceMeasure =
         length_distributions.distanceMeasurePoiss(x1 + x2, y1);
     return distanceMeasure - log(relfs1) - log(relfs2) - log(prior21);
   }
   return -1;
 }
 
-// dynamic Programming procedure : searches a barrow band around the main
+// dynamic Programming procedure : searches a narrow band around the main
 // diagonal (i=j). If the search comes close to the bound, the procedure
 // reiterates
 void LengthAlignment::dynamicProgramming(
@@ -405,11 +406,11 @@ void LengthAlignment::dynamicProgramming(
   while (!(current_cell.first == root_cell.first &&
            current_cell.second == root_cell.second)) {
     // get positions of cell in traceback
-    int current_row = current_cell.first;
-    int diag_row = main_diagonal.first;
+    const int current_row = current_cell.first;
+    const int diag_row = main_diagonal.first;
 
-    int boundary_1 = diag_row - bandwidth + offset;
-    int boundary_2 = diag_row + bandwidth - offset;
+    const int boundary_1 = diag_row - bandwidth + offset;
+    const int boundary_2 = diag_row + bandwidth - offset;
 
     // for debugging
     // cout << "\nboundary1 " << boundary_1 << endl;
@@ -417,12 +418,14 @@ void LengthAlignment::dynamicProgramming(
 
     // if alignment comes close to band boundaries, redo dynamic programming
     // with extended bandwidth
-    if (current_row <= boundary_1 || current_row >= boundary_2 ||
-        current_row == -1) {
+    if (bandwidth < ssize && bandwidth < tsize &&
+        (current_row <= boundary_1 || current_row >= boundary_2 ||
+         current_row == -1)) {
       //      expand_band = 1;
 
       // clear distanceMatrix and recurse with expanded band
       distanceMatrix.clear();
+      cout << "Increasing bandwidth to " << 2 * bandwidth << endl;
       dynamicProgramming(my_data, l_d, bandwidth * 2);
       return;
     }
