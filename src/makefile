@@ -5,8 +5,10 @@ OBJS = utilities.o reader.o writer.o sentence.o data.o lengthDistributions.o lex
 #Office setup
 CC = g++
 DEBUG = -g 
-CFLAGS = -std=c++11 -O2 -fopenmp -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -c $(DEBUG) 
-LFLAGS = -Wall $(DEBUG) -fopenmp -ltcmalloc
+CFLAGS = -std=c++11 -O2 -fopenmp -Wfatal-errors -Wall -c $(DEBUG)
+#  -Wextra -Wpedantic -Wconversion -Wshadow  
+LFLAGS = -Wall $(DEBUG) -fopenmp 
+#-ltcmalloc
 INCLUDE_PATH =  /usr/include/
 LIB_PATH = /usr/lib/
 REGEX_LIB =  boost_regex
@@ -48,7 +50,7 @@ sentenceAlignerDrive.o : Utilities.h Reader.h Data.h Sentence.h Aligner.h Types.
 #merging_heuristic.o :  Data.h Sentence.h Paragraph.h Cell.h Chunk.h Merging_heuristic.h merging_heuristic.cpp
 #	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) merging_heuristic.cpp
 
-alignment_clustering.o : Data.h Sentence.h Cell.h Chunk.h AlignmentClustering.h Types.h alignmentClustering.cpp
+alignmentClustering.o : Data.h Sentence.h Cell.h Chunk.h AlignmentClustering.h Types.h alignmentClustering.cpp
 	$(CC) -I $(INCLUDE_PATH) $(CFLAGS) alignmentClustering.cpp 
 
 initialAlignment.o :  Data.h Sentence.h Cell.h Chunk.h InitialAlignment.h Types.h initialAlignment.cpp
