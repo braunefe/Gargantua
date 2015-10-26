@@ -350,9 +350,7 @@ int main() {
 
     stack<Data> paragraphs = Reader::splitEuroparlDocumentIntoParagraphs(
         Utilities::findEuroparlFile(filtered_source, filename).c_str(),
-        filename.c_str(),
-        Utilities::findEuroparlFile(filtered_target, filename).c_str(),
-        filename.c_str());
+        Utilities::findEuroparlFile(filtered_target, filename).c_str());
 
     // restore the flat diagonals computed from the initial alignment
     vector<list<pair<int, int> > > flat_diagonals =
