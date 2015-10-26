@@ -375,13 +375,14 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
               fout3 << sentence_id << " ";
             }
 
-            vector<string> token =
-                source_sentences_map.find(sentence_id)->second;
-            vector<string>::iterator itr_tok;
-
-            for (itr_tok = token.begin(); itr_tok != token.end(); itr_tok++) {
-              string tok = *itr_tok;
-              fout1 << tok << " ";
+            const auto stoks = source_sentences_map.find(sentence_id);
+            if (stoks == source_sentences_map.end()) {
+              cout << "Could not find source sentence_id " << sentence_id << endl;
+              abort();
+            } else {
+				for (const auto& tok : stoks->second) {
+				  fout1 << tok << " ";
+				}
             }
           }
           insertion_deletion = 0;
@@ -408,16 +409,14 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
               fout3 << sentence_id << " ";
             }
 
-            const auto ttok = target_sentences_map.find(sentence_id);
-            if (ttok == target_sentences_map.end()) {
+            const auto ttoks = target_sentences_map.find(sentence_id);
+            if (ttoks == target_sentences_map.end()) {
               cout << "Could not find sentence_id " << sentence_id << endl;
               abort();
-            }
-            vector<string> token = ttok->second;
-            vector<string>::iterator itr_tok;
-            for (itr_tok = token.begin(); itr_tok != token.end(); itr_tok++) {
-              string tok = *itr_tok;
-              fout2 << tok << " ";
+            } else {
+            	for (const auto& tok : ttoks->second) {
+                    fout2 << tok << " ";
+            	}
             }
           }
           insertion_deletion = 0;
