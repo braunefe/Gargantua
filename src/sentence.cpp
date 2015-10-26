@@ -10,7 +10,7 @@ Sentence::Sentence(long int position, int charlength, int wordlength,
 }
 
 void Sentence::setSentence(long int position, int charlength, int wordlength,
-                           vector<long int> t) {
+                           const vector<long int>& t) {
   _sPosition = position;
   _sLengthChar = charlength;
   _sLengthWords = wordlength;
@@ -31,8 +31,8 @@ void Sentence::setWordLength(int l) { _sLengthWords = l; }
 
 vector<string> Sentence::getToken() const { return _token; }
 
-void Sentence::setToken(vector<string> t) { _token = t; }
+void Sentence::setToken(const vector<string>& t) { _token = t; }
 
-void Sentence::setTokenInts(vector<long int> t_i) { _token_ints = t_i; }
+void Sentence::setTokenInts(const vector<long int>& t_i) { _token_ints = t_i; }
 
 vector<long int> Sentence::getTokenInts() const { return _token_ints; }

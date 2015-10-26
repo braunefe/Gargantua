@@ -12,15 +12,14 @@ class Sentence {
   int _sLengthChar;       // length of the sentence in characters
   int _sLengthWords;      // length of the sentence in words
   vector<string> _token;  // token composing the sentence
-  vector<long int>
-      _token_ints;  // long ints corresponding to token composing the sentence
+  vector<long int> _token_ints;  // sentence tokens as long ints
 
  public:
   Sentence(long int sPosition, int sLengthChar, int sLengthWords,
-           vector<long int> token_ints);
+           const vector<long int>& token_ints);
 
   void setSentence(long int position, int charLength, int wordLength,
-                   vector<long int> token_ints);
+                   const vector<long int>& token_ints);
 
   void setPosition(long int p);
   long int getPosition() const;
@@ -31,10 +30,10 @@ class Sentence {
   void setWordLength(int w);
   int getWordLength() const;
 
-  void setToken(vector<string> t);
+  void setToken(const vector<string>& t);
   vector<string> getToken() const;
 
-  void setTokenInts(vector<long int> t);
+  void setTokenInts(const vector<long int>& t);
   vector<long int> getTokenInts() const;
 };
 
