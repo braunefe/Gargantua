@@ -1830,32 +1830,20 @@ void Reader::makeTrainingData(string &path_to_best_alignments,
     string filename = filenames.top();
     filenames.pop();
 
-    // path to write trainig data
-    string path = path_to_training_data;
-
     // make output files
-    ofstream fout1(path.append(filename).c_str());
+    const string training_data_filename = path_to_training_data + filename;
+    ofstream fout1(training_data_filename.c_str());
 
-    path.clear();
+    const string alignment_filename = path_to_best_alignments + filename;
 
-    path = path_to_training_data;
-
-    // make path of file to open
-    path = path_to_best_alignments;  // copy path for appending filename
-    filename = path.append(filename);
-
-    // cout << "Processing file : " << path << endl;
-
-    // strings to store input from file
-    string s;
-    string line;
 
     // open file
-    ifstream fin1(path.c_str());
+    ifstream fin1(alignment_filename.c_str());
     if (!fin1) {
-      cout << "Couldn´t open input file" << path << endl;
+      cout << "Couldn´t open input file" << filename << endl;
     } else {
       // extract source and target sentences
+      string line;
       while (getline(fin1, line)) {
         // line is either source sentence tag, target sentence tag, bead tag or
         // sentence
