@@ -66,11 +66,11 @@ class LexicalDistributions {
 
   // prepares a t-table for each document by filtering out words that are in the
   // document (document = numbered_data_stack)
-  void prepareTTable(stack<Data> numbered_data, LexProbs &t_table);
+  void prepareTTable(const vector<Data>& numbered_data, LexProbs &t_table);
 
   // prepares unigram frequencies for each document by filtering out words that
   // are in the document (document = numbered_data_stack)
-  void prepareUnigramFrequencies(stack<Data> numbered_data,
+  void prepareUnigramFrequencies(const vector<Data>& numbered_data,
                                  string &path_to_unigram_frequencies_of_source,
                                  string &path_to_unigram_frequencies_of_target);
 

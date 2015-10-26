@@ -81,7 +81,7 @@ Aligner::makeLengthBasedAlignment(stack<Data> &data,
 }
 
 // makes the alignment composed of 1-to-0/0-to-1 and 1-to-1 minimal alignments
-stack<Chunk> Aligner::makeInitialAlignment(stack<Data> data,
+stack<Chunk> Aligner::makeInitialAlignment(const vector<Data>& data,
                                            const LengthDistributions &l_d,
                                            const LexicalDistributions &lex_d,
                                            vector<list<pair<int, int> > > f_d) {
@@ -91,9 +91,7 @@ stack<Chunk> Aligner::makeInitialAlignment(stack<Data> data,
   stack<Chunk> alignment;
   stack<Chunk> paragraph_alignment;
 
-  while (!data.empty()) {
-    Data d = data.top();
-    data.pop();
+  for (const Data& d : data) {
 
     // iterator for vector of diagonals
     vector<list<pair<int, int> > >::iterator itr_diagonal;

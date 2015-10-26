@@ -254,7 +254,7 @@ float InitialAlignment::distanceFunctionMoore(
 
 // align : reiterate dynamic programming with incrementing bandwidth until the
 // whole text has been aligned
-void InitialAlignment::align(Data &my_data, const LengthDistributions &l_d,
+void InitialAlignment::align(const Data &my_data, const LengthDistributions &l_d,
                              const LexicalDistributions &lex_d) {
   // Get source and target lengths to size the distance matrix
   int ssize = my_data.getSourceSentences().size();
@@ -348,7 +348,7 @@ void InitialAlignment::align(Data &my_data, const LengthDistributions &l_d,
 // the flat diagonal extracted from the length-based alignment. If the alignment
 // comes close to the bounds reiterate and replace the flat diagonal by the
 // approximate alignment.
-void InitialAlignment::dynamicProgramming(Data &my_data,
+void InitialAlignment::dynamicProgramming(const Data &my_data,
                                           const LengthDistributions &l_d,
                                           const LexicalDistributions &lex_d,
                                           int bandwidth1, int bandwidth2) {

@@ -968,7 +968,7 @@ void LexicalDistributions::computeUnigramFrequencies(
 
 // prepares a t-table for each document by filtering out words that are in the
 // document (document = numbered_data_stack)
-void LexicalDistributions::prepareTTable(stack<Data> numbered_data_stack,
+void LexicalDistributions::prepareTTable(const vector<Data>& numbered_data_stack,
                                          LexProbs &t_table) {
   LexProbs prepared_t_table;
 
@@ -984,10 +984,7 @@ void LexicalDistributions::prepareTTable(stack<Data> numbered_data_stack,
   target_token.insert(1);
 
   // loop through data stack
-  while (!numbered_data_stack.empty()) {
-    Data numbered_data = numbered_data_stack.top();
-    numbered_data_stack.pop();
-
+  for (const auto& numbered_data : numbered_data_stack) {
     // get the source and target sentences
     vector<Sentence> source_sentences = numbered_data.getSourceSentences();
     vector<Sentence> target_sentences = numbered_data.getTargetSentences();
@@ -1068,7 +1065,7 @@ void LexicalDistributions::prepareTTable(stack<Data> numbered_data_stack,
 // prepares unigram frequencies for each document by filtering out words that
 // are in the document (document = numbered_data_stack)
 void LexicalDistributions::prepareUnigramFrequencies(
-    stack<Data> numbered_data_stack,
+    const vector<Data>& numbered_data_stack,
     string &path_to_unigram_frequencies_of_source,
     string &path_to_unigram_frequencies_of_target) {
   WordProbs unigram_freq_of_source;
@@ -1088,10 +1085,7 @@ void LexicalDistributions::prepareUnigramFrequencies(
   source_token.insert(0);
 
   // loop through data stack
-  while (!numbered_data_stack.empty()) {
-    Data numbered_data = numbered_data_stack.top();
-    numbered_data_stack.pop();
-
+  for (const auto& numbered_data : numbered_data_stack) {
     // get source and target sentences
     vector<Sentence> source_sentences = numbered_data.getSourceSentences();
     vector<Sentence> target_sentences = numbered_data.getTargetSentences();

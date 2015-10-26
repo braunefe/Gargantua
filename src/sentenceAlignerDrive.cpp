@@ -351,6 +351,7 @@ int main() {
     stack<Data> paragraphs = Reader::splitEuroparlDocumentIntoParagraphs(
         Utilities::findEuroparlFile(filtered_source, filename).c_str(),
         Utilities::findEuroparlFile(filtered_target, filename).c_str());
+    const vector<Data> paragraph_vec = Utilities::stackToVector(paragraphs);
 
     // restore the flat diagonals computed from the initial alignment
     vector<list<pair<int, int> > > flat_diagonals =
@@ -367,17 +368,17 @@ int main() {
     LexicalDistributions local_lexical_distributions = LexicalDistributions(
         local_unigram_frequencies_of_source,
         local_unigram_frequencies_of_target, translation_table);
-    local_lexical_distributions.prepareTTable(paragraphs, translation_table);
+    local_lexical_distributions.prepareTTable(paragraph_vec, translation_table);
 
     cout << "Preparing unigram frequencies..." << endl;
     local_lexical_distributions.prepareUnigramFrequencies(
-        paragraphs, unigram_frequencies_of_source,
+        paragraph_vec, unigram_frequencies_of_source,
         unigram_frequencies_of_target);
 
     cout << "Making initial alignment... " << endl;  // this is the slowest step
     Aligner myAligner = Aligner();
     alignment = myAligner.makeInitialAlignment(
-        paragraphs, my_restored_length_distributions,
+        paragraph_vec, my_restored_length_distributions,
         local_lexical_distributions, flat_diagonals);
 
     cout << "Making alignment clustering... " << endl;

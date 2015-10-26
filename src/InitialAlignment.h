@@ -59,7 +59,7 @@ class InitialAlignment {
 
   // align : reiterate dynamic programming with incrementing bandwidth until the
   // whole text has been aligned
-  void align(Data &d, const LengthDistributions &length_distributions,
+  void align(const Data &d, const LengthDistributions &length_distributions,
              const LexicalDistributions &lexical_distributions);
 
   // dynamic programming : makes an approximate alignment on a narrow band
@@ -67,7 +67,7 @@ class InitialAlignment {
   // alignment comes close to the bounds 		reiterate and replace the
   // flat
   // diagonal by the approximate alignment.
-  void dynamicProgramming(Data &d,
+  void dynamicProgramming(const Data &d,
                           const LengthDistributions &length_distributions,
                           const LexicalDistributions &lexical_distributions,
                           int bandwidth_1, int bandwidth_2);

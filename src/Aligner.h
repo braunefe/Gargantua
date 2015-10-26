@@ -50,7 +50,7 @@ class Aligner {
   list<pair<int, int> > flattenDiagonal(stack<pair<int, int> > &traceback);
 
   // make final alignment
-  stack<Chunk> makeInitialAlignment(stack<Data> data,
+  stack<Chunk> makeInitialAlignment(const vector<Data>& data,
                                     const LengthDistributions &l_d,
                                     const LexicalDistributions &lex_d,
                                     vector<list<pair<int, int> > > f_d);
