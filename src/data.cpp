@@ -15,9 +15,13 @@ vector<Sentence> Data::getSourceSentences() const { return source_sentences; }
 
 vector<Sentence> Data::getTargetSentences() const { return target_sentences; }
 
-void Data::setSourceSentences(const vector<Sentence>& s) { source_sentences = s; }
+void Data::setSourceSentences(const vector<Sentence>& s) {
+  source_sentences = s;
+}
 
-void Data::setTargetSentences(const vector<Sentence>& t) { target_sentences = t; }
+void Data::setTargetSentences(const vector<Sentence>& t) {
+  target_sentences = t;
+}
 
 void Data::clear() {
   source_sentences.clear();

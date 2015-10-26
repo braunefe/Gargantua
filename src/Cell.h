@@ -13,7 +13,7 @@ class Cell  // cells of the distance matrix of the DP procedure
   bool initialized;
 
  public:
-  Cell() : distance(0), initialized(false) {};
+  Cell() : distance(0), initialized(false){};
   Cell(long double d, pair<int, int> p)
       : distance(d), previous(p), initialized(true){};
 

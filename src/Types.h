@@ -8,18 +8,14 @@
 #ifndef TYPES_H_
 #define TYPES_H_
 
-
 #include <set>
 #include <map>
 #include "boost/unordered_map.hpp"
 #include <google/sparse_hash_map>
 
-//typedef boost::unordered_map<long int, float> WordProbs;
-//typedef boost::unordered_map<long int, WordProbs > LexProbs;
+// typedef boost::unordered_map<long int, float> WordProbs;
+// typedef boost::unordered_map<long int, WordProbs > LexProbs;
 typedef google::sparse_hash_map<long int, float> WordProbs;
-typedef google::sparse_hash_map<long int, WordProbs > LexProbs;
-
-
-
+typedef google::sparse_hash_map<long int, WordProbs> LexProbs;
 
 #endif /* TYPES_H_ */

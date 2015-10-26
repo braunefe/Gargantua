@@ -1,12 +1,12 @@
 #ifndef UTILITIES_H_
 #define UTILITIES_H_
 
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <string>
 #include <vector>
-#include <cmath> 
+#include <cmath>
 #include <set>
 #include <map>
 #include "boost/regex.hpp"
@@ -18,48 +18,43 @@
 #include <sstream>
 
 #include "Types.h"
-#include"Reader.h"
-#include"Data.h"
-#include"Sentence.h"
-#include"LengthDistributions.h"
+#include "Reader.h"
+#include "Data.h"
+#include "Sentence.h"
+#include "LengthDistributions.h"
 #include <sys/resource.h>
 
-
-namespace bfs=boost::filesystem;
-
+namespace bfs = boost::filesystem;
 
 class Utilities {
-	
-	private:
-	//finds file in a directory
-	static string findFile(const bfs::path & dir_path, string filename);
-	static bool checkFileExists(const string& filename);
-	static bool checkFileExists(const string& dir_path, const string& filename);
-	
-	public:
-	
-	//converts int to string
-	static string itos(int i);
+ private:
+  // finds file in a directory
+  static string findFile(const bfs::path& dir_path, string filename);
+  static bool checkFileExists(const string& filename);
+  static bool checkFileExists(const string& dir_path, const string& filename);
 
-	//converts string to float
-	static float stof(string s);
+ public:
+  // converts int to string
+  static string itos(int i);
 
-	//finds all files in a directory and put filenames into vector
-	static stack< string > findAllFiles(const bfs::path & p);
+  // converts string to float
+  static float stof(string s);
 
-	//removes a directory
-	static void removeDirectory(const bfs::path & p);
+  // finds all files in a directory and put filenames into vector
+  static stack<string> findAllFiles(const bfs::path& p);
 
-	//extracts paragraph number of file to be aligned
-	static pair<int, string> extractParagraphNumber(string paragraph_name);
+  // removes a directory
+  static void removeDirectory(const bfs::path& p);
 
-	//finds files with .txt expansion
-	static string findEuroparlFile(string path, string file_name);	
+  // extracts paragraph number of file to be aligned
+  static pair<int, string> extractParagraphNumber(string paragraph_name);
 
-	// converts stack to vector
-	template <class T>
-	static vector<T> stackToVector(stack<T>& s);
+  // finds files with .txt expansion
+  static string findEuroparlFile(string path, string file_name);
 
+  // converts stack to vector
+  template <class T>
+  static vector<T> stackToVector(stack<T>& s);
 };
 
 template <class T>

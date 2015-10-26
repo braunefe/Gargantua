@@ -8,10 +8,10 @@ using namespace std;
 
 class Sentence {
  private:
-  long int _sPosition;    // position of the sentence in the corpus
-  int _sLengthChar;       // length of the sentence in characters
-  int _sLengthWords;      // length of the sentence in words
-  vector<string> _token;  // token composing the sentence
+  long int _sPosition;           // position of the sentence in the corpus
+  int _sLengthChar;              // length of the sentence in characters
+  int _sLengthWords;             // length of the sentence in words
+  vector<string> _token;         // token composing the sentence
   vector<long int> _token_ints;  // sentence tokens as long ints
 
  public:

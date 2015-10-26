@@ -1,12 +1,12 @@
 #include "InitialAlignment.h"
 
-InitialAlignment::InitialAlignment(const list<pair<int, int> >& f_d) {
+InitialAlignment::InitialAlignment(const list<pair<int, int> > &f_d) {
   setDiagonal(f_d);
 }
 
 list<pair<int, int> > InitialAlignment::getDiagonal() const { return diagonal; }
 
-void InitialAlignment::setDiagonal(const list<pair<int, int> >& f_d) {
+void InitialAlignment::setDiagonal(const list<pair<int, int> > &f_d) {
   diagonal = f_d;
 }
 
@@ -136,106 +136,113 @@ float InitialAlignment::distanceFunctionMoore(
     st.push_back(0);
 
     // trans proba of target given source
-//    float transProb = 0.0f;
+    //    float transProb = 0.0f;
 
     // total translation probabilites for source words
     float totalTPST = 0.0f;
 
     // maximum translation probability for source words
-//    float maxTP = -log(0.0f);
+    //    float maxTP = -log(0.0f);
 
     // compute model 1 score
     // loop through token of target sentence
     vector<double> max_probs(y1, 0.0);
 
-	for (const auto stok : st) {
-		const vector<float> probs = lexical_distributions.getTTableEntries(stok, tt);
-		for (int i=0; i<y1; ++i) {
-			if (probs[i] > max_probs[i]) {
-				max_probs[i] = probs[i];
-			}
-		}
-	}
-	for ( int i=0; i<y1; ++i) {
-		totalTPST -= log(max_probs[i]);
-	}
+    for (const auto stok : st) {
+      const vector<float> probs =
+          lexical_distributions.getTTableEntries(stok, tt);
+      for (int i = 0; i < y1; ++i) {
+        if (probs[i] > max_probs[i]) {
+          max_probs[i] = probs[i];
+        }
+      }
+    }
+    for (int i = 0; i < y1; ++i) {
+      totalTPST -= log(max_probs[i]);
+    }
 
-//    for (const auto ttok : tt) {
-//    	double maxSourceProb = 0;
-//    		const double prob = lexical_distributions.getTTableEntry(stok, ttok);
-//    		if (prob > maxSourceProb) {
-//    			maxSourceProb = prob;
-//    		}
-//    	}
-//    	totalTPST -= log(maxSourceProb);
-//    }
+    //    for (const auto ttok : tt) {
+    //    	double maxSourceProb = 0;
+    //    		const double prob =
+    //    lexical_distributions.getTTableEntry(stok, ttok);
+    //    		if (prob > maxSourceProb) {
+    //    			maxSourceProb = prob;
+    //    		}
+    //    	}
+    //    	totalTPST -= log(maxSourceProb);
+    //    }
 
-
-//    const auto lex_0 = lexical_distributions.translation_table.find(0);
-//    for (itr_target_token = tt.begin(); itr_target_token != tt.end();
-//         itr_target_token++) {
-//      long int ttok = *itr_target_token;
-//      maxTP = -log(0.0f);
-//
-//      // loop through token of source sentence
-//      for (itr_source_token = st.begin(); itr_source_token != st.end();
-//           itr_source_token++) {
-//        long int stok = *itr_source_token;
-//
-//        // check if words are in translation table
-//        // look for source word
-//        const auto s_lex = lexical_distributions.translation_table.find(stok);
-//        if (s_lex != lexical_distributions.translation_table.end()) {
-//          // if source word is found, look for associated target word
-//          auto t_lex = s_lex->second.find(ttok);
-//          if (t_lex != s_lex->second.end()) {
-//            // if found get neg log probability
-//            transProb = -log(t_lex->second);
-//            // take the maximum (Viterbi Model 1)
-//            if (transProb <= maxTP) {
-//              maxTP = transProb;
-//            }
-//          }
-//          // else search for target token associated to null word (as source
-//          // word)
-//          else {
-//            if (lex_0->second.find(ttok) != lex_0->second.end()) {
-//              // if found get neg log probability
-//              transProb = -log(lex_0->second.find(ttok)->second);
-//              // take the maximum (Viterbi Model 1)
-//              if (transProb <= maxTP) {
-//                maxTP = transProb;
-//              }
-//            } else {
-//              transProb =
-//                  -log(0.0000001f);  // assign low proba if word is not found
-//              if (transProb <= maxTP) {
-//                maxTP = transProb;
-//              }
-//            }
-//          }
-//        }  // end of if
-//        // else look for the null word
-//        else {
-//          if (lex_0->second.find(ttok) !=
-//              lexical_distributions.translation_table.find(0)->second.end()) {
-//            transProb = -log(lexical_distributions.translation_table.find(0)
-//                                 ->second.find(ttok)
-//                                 ->second);
-//            if (transProb <= maxTP) {
-//              maxTP = transProb;
-//            }
-//          } else {
-//            transProb =
-//                -log(0.0000001f);  // assign low proba if word is not found
-//            if (transProb <= maxTP) {
-//              maxTP = transProb;
-//            }
-//          }
-//        }
-//      }  // end of loop through source token
-//      totalTPST += maxTP;
-//    }  // end of loop through target tok
+    //    const auto lex_0 = lexical_distributions.translation_table.find(0);
+    //    for (itr_target_token = tt.begin(); itr_target_token != tt.end();
+    //         itr_target_token++) {
+    //      long int ttok = *itr_target_token;
+    //      maxTP = -log(0.0f);
+    //
+    //      // loop through token of source sentence
+    //      for (itr_source_token = st.begin(); itr_source_token != st.end();
+    //           itr_source_token++) {
+    //        long int stok = *itr_source_token;
+    //
+    //        // check if words are in translation table
+    //        // look for source word
+    //        const auto s_lex =
+    //        lexical_distributions.translation_table.find(stok);
+    //        if (s_lex != lexical_distributions.translation_table.end()) {
+    //          // if source word is found, look for associated target word
+    //          auto t_lex = s_lex->second.find(ttok);
+    //          if (t_lex != s_lex->second.end()) {
+    //            // if found get neg log probability
+    //            transProb = -log(t_lex->second);
+    //            // take the maximum (Viterbi Model 1)
+    //            if (transProb <= maxTP) {
+    //              maxTP = transProb;
+    //            }
+    //          }
+    //          // else search for target token associated to null word (as
+    //          source
+    //          // word)
+    //          else {
+    //            if (lex_0->second.find(ttok) != lex_0->second.end()) {
+    //              // if found get neg log probability
+    //              transProb = -log(lex_0->second.find(ttok)->second);
+    //              // take the maximum (Viterbi Model 1)
+    //              if (transProb <= maxTP) {
+    //                maxTP = transProb;
+    //              }
+    //            } else {
+    //              transProb =
+    //                  -log(0.0000001f);  // assign low proba if word is not
+    //                  found
+    //              if (transProb <= maxTP) {
+    //                maxTP = transProb;
+    //              }
+    //            }
+    //          }
+    //        }  // end of if
+    //        // else look for the null word
+    //        else {
+    //          if (lex_0->second.find(ttok) !=
+    //              lexical_distributions.translation_table.find(0)->second.end())
+    //              {
+    //            transProb =
+    //            -log(lexical_distributions.translation_table.find(0)
+    //                                 ->second.find(ttok)
+    //                                 ->second);
+    //            if (transProb <= maxTP) {
+    //              maxTP = transProb;
+    //            }
+    //          } else {
+    //            transProb =
+    //                -log(0.0000001f);  // assign low proba if word is not
+    //                found
+    //            if (transProb <= maxTP) {
+    //              maxTP = transProb;
+    //            }
+    //          }
+    //        }
+    //      }  // end of loop through source token
+    //      totalTPST += maxTP;
+    //    }  // end of loop through target tok
 
     // compute Viterbi model-1 probability
     float model_1 = totalTPST + log(((float)st.size() + 1.0f));

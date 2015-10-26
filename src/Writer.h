@@ -56,15 +56,13 @@ class Writer {
       string &path_to_co_occurrence_map);
 
   // writes the t-table into file
-  static void writeTTable(
-      const vector<WordProbs > &t_table,
-      const string &path_to_t_table);
+  static void writeTTable(const vector<WordProbs> &t_table,
+                          const string &path_to_t_table);
 
   // writes unigram frequencies into a file
-  static void writeUnigramFrequencies(
-      WordProbs unigram_freq_of_source,
-      WordProbs unigram_freq_of_target,
-      string &path_to_relative_frequencies);
+  static void writeUnigramFrequencies(WordProbs unigram_freq_of_source,
+                                      WordProbs unigram_freq_of_target,
+                                      string &path_to_relative_frequencies);
 
   // for debugging : write prepared t-table into a file
   // static void writePreparedTTable(boost::unordered_map<long int,

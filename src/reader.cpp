@@ -581,7 +581,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoParagraphs(const char *filename1,
       Data my_data = Data("Europarl", source_paragraph, target_paragraph);
       paragraphs.push(my_data);
     }  // end of while
-  }  // end of if
+  }    // end of if
   else {
     // not the same number of pharagraphs : split at speaker delimiters
     if (same_chapters && same_speakers) {
@@ -779,7 +779,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoSpeakers(const char *filename1,
         previous_is_chapter = 0;
         previous_is_speaker = 0;
       }  // end of else
-    }  // end of while
+    }    // end of while
 
     // put last paragraph on stack (no closing tags for speaker)
     vector<Sentence> paragraph = readData(s);
@@ -1935,11 +1935,11 @@ void Reader::makeTrainingData(string &path_to_best_alignments,
             // reset control variable
             is_target = 0;
           }  // end of else
-        }  // end of else
-      }  // end of while for getline
+        }    // end of else
+      }      // end of while for getline
       fin1.close();
     }  // end of else
-  }  // end of while for filenames
+  }    // end of while for filenames
 }
 
 // replaces words in training data with integers and makes numbering maps (where
@@ -2172,7 +2172,7 @@ Reader::filterOutRareWordsFromTrainingData(
 
             t = strtok_r(NULL, " ", &sp);
           }
-        }  // end if
+        }     // end if
         else  // even number : target sentence
         {
           while (t != NULL) {
@@ -2198,8 +2198,8 @@ Reader::filterOutRareWordsFromTrainingData(
         delete[] sentCstr;
         delete[] t;
       }  // end of while
-    }  // end of else
-  }  // end of loop through files
+    }    // end of else
+  }      // end of loop through files
 
   // make set of token to erase
   // make source erase map
@@ -2334,7 +2334,7 @@ Reader::filterOutRareWordsFromTrainingData(
           }
           fout1 << endl;
           source_sentences.clear();
-        }  // end of if
+        }     // end of if
         else  // even number : target sentence
         {
           while (t != NULL) {
@@ -2366,8 +2366,8 @@ Reader::filterOutRareWordsFromTrainingData(
         delete[] sentCstr;
         delete[] t;
       }  // end of while
-    }  // end of else
-  }  // end of while through files
+    }    // end of else
+  }      // end of while through files
 
   source_token_to_erase.clear();
   target_token_to_erase.clear();
@@ -2490,7 +2490,7 @@ void Reader::filterOutRareWordsFromData(vector<long int> &rare_source_words,
       }
       fin1.close();
     }  // end of else
-  }  // end of loop through filenames
+  }    // end of loop through filenames
 
   // get names of files in source and target input directories
   filenames = Utilities::findAllFiles(input_path_target);
@@ -2564,7 +2564,7 @@ void Reader::filterOutRareWordsFromData(vector<long int> &rare_source_words,
       }
       fin2.close();
     }  // end of else
-  }  // end of loop through filenames
+  }    // end of loop through filenames
 }
 
 // makes the map indicating co-occurrence between source and target token
@@ -2649,7 +2649,7 @@ void Reader::makeCoOccurrenceMap(string &path_to_training_data,
             source_token_occurrence_line.insert(source_entry);
             t = strtok_r(NULL, " ", &sp);
           }
-        }  // end of if
+        }     // end of if
         else  // even number : target sentence
         {
           while (t != NULL)  // loop through target token
@@ -2677,7 +2677,7 @@ void Reader::makeCoOccurrenceMap(string &path_to_training_data,
       // close file
       fin1.close();
     }  // end of else
-  }  // end of loop through files
+  }    // end of loop through files
 
   // loop trough source line map
   for (itr_source_token = source_token_occurrence_line.begin();

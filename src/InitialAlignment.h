@@ -27,10 +27,10 @@ class InitialAlignment {
   list<pair<int, int> > diagonal;  // diagonal from initial alignment
 
  public:
-  InitialAlignment(const list<pair<int, int> >& f_d);
+  InitialAlignment(const list<pair<int, int> > &f_d);
 
   list<pair<int, int> > getDiagonal() const;
-  void setDiagonal(const list<pair<int, int> >& f_d);
+  void setDiagonal(const list<pair<int, int> > &f_d);
 
   stack<Chunk> getAlignment();
   void setAlignment(stack<Chunk>);
@@ -44,8 +44,8 @@ class InitialAlignment {
   bool getReduceBand1() const;
   void setReduceBand1(bool);
 
-//  bool getReduceBand2() const;
-//  void setReduceBand2(bool);
+  //  bool getReduceBand2() const;
+  //  void setReduceBand2(bool);
 
   bool getDynamicPrgrammingState() const;
   void setDynamicProgrammingState(bool);
@@ -64,9 +64,11 @@ class InitialAlignment {
 
   // dynamic programming : makes an approximate alignment on a narrow band
   // around the flat diagonal extracted from the length-based alignment. If the
-  // alignment comes close to the bounds 		reiterate and replace the flat
+  // alignment comes close to the bounds 		reiterate and replace the
+  // flat
   // diagonal by the approximate alignment.
-  void dynamicProgramming(Data &d, const LengthDistributions &length_distributions,
+  void dynamicProgramming(Data &d,
+                          const LengthDistributions &length_distributions,
                           const LexicalDistributions &lexical_distributions,
                           int bandwidth_1, int bandwidth_2);
 };

@@ -22,13 +22,13 @@ class Data {
  public:
   Data(){};
   Data(const string& corpus_name, const vector<Sentence>& source_sentences,
-		  const vector<Sentence>& target_sentences);
+       const vector<Sentence>& target_sentences);
 
   string getCorpusName() const;
   void setCorpusName(const string& corpus_name);
 
-//  string getParagraphName() const;
-//  void setParagraphName(string par_name);
+  //  string getParagraphName() const;
+  //  void setParagraphName(string par_name);
 
   vector<Sentence> getSourceSentences() const;
   vector<Sentence> getTargetSentences() const;

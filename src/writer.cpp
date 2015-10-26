@@ -340,17 +340,17 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
 
         while (t != separator) {
           source_sentence_ids.push_back(atol(t));
-          t=strtok_r(NULL," ", &sp);
+          t = strtok_r(NULL, " ", &sp);
         }
 
         if (t == separator)  // ignore separator
         {
-          t=strtok_r(NULL," ", &sp);
+          t = strtok_r(NULL, " ", &sp);
         }
 
         while (t != NULL) {
           target_sentence_ids.push_back(atol(t));
-          t=strtok_r(NULL," ", &sp);
+          t = strtok_r(NULL, " ", &sp);
         }
 
         // iterate through source and target sentence ids
@@ -414,8 +414,8 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
 
             const auto ttok = target_sentences_map.find(sentence_id);
             if (ttok == target_sentences_map.end()) {
-            	cout << "Could not find sentence_id " << sentence_id << endl;
-            	abort();
+              cout << "Could not find sentence_id " << sentence_id << endl;
+              abort();
             }
             vector<string> token = ttok->second;
             vector<string>::iterator itr_tok;
@@ -482,8 +482,9 @@ void Writer::writeTokenNumbering(
 void Writer::writeTrainingData(const string path_to_training_data,
                                const string &filename, stack<Chunk> &a) {
   // 1. Make path
-  const string filename_with_path = path_to_training_data + filename + string(".txt");
-//  filename.clear();
+  const string filename_with_path =
+      path_to_training_data + filename + string(".txt");
+  //  filename.clear();
 
   cout << "filename_with_path " << filename_with_path << endl;
 
@@ -566,10 +567,9 @@ void Writer::writeCoOccurrenceMap(
 }
 
 // writes the t-table into file
-void Writer::writeTTable(
-    const vector<WordProbs > &t_table,
-    const string &path_to_t_table) {
-  vector<WordProbs >::const_iterator itr_map;
+void Writer::writeTTable(const vector<WordProbs> &t_table,
+                         const string &path_to_t_table) {
+  vector<WordProbs>::const_iterator itr_map;
 
   ofstream fout(path_to_t_table.c_str());
 
@@ -598,10 +598,9 @@ void Writer::writeTTable(
 }
 
 // writes unigram frequencies into files
-void Writer::writeUnigramFrequencies(
-    WordProbs unigram_freq_of_source,
-    WordProbs unigram_freq_of_target,
-    string &path_to_unigram_frequencies) {
+void Writer::writeUnigramFrequencies(WordProbs unigram_freq_of_source,
+                                     WordProbs unigram_freq_of_target,
+                                     string &path_to_unigram_frequencies) {
   string path = path_to_unigram_frequencies;
   string source_name = "Unigram_frequencies_of_source.txt";
   string source_path = path.append(source_name);
