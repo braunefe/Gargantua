@@ -908,7 +908,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoChapters(const char *filename1,
   stack<Data> paragraphs;
 
   // control variables for sequences of tags
-  bool previous_is_chapter = 0;
+//  bool previous_is_chapter = 0;
 
   // first tag or subsequent tag should be appended to subsequent sentences
   bool is_first = 1;
@@ -959,7 +959,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoChapters(const char *filename1,
         s += "\n";
 
         // reinitialize control variables
-        previous_is_chapter = 0;
+//        previous_is_chapter = 0;
       }
     }  // end of while
 
@@ -976,7 +976,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoChapters(const char *filename1,
   line.clear();
 
   // reinitialize control variables
-  previous_is_chapter = 0;
+//  previous_is_chapter = 0;
   is_first = 1;
 
   // open target language file
@@ -1022,7 +1022,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoChapters(const char *filename1,
         s += "\n";
 
         // reinitialize control variables
-        previous_is_chapter = 0;
+//        previous_is_chapter = 0;
       }
     }  // end of while
 
