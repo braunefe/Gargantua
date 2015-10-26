@@ -278,13 +278,10 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
 
     vector<Sentence> source_sentences = my_data.getSourceSentences();
     vector<Sentence> target_sentences = my_data.getTargetSentences();
-    vector<Sentence>::iterator itr_sentences;
 
-    for (itr_sentences = source_sentences.begin();
-         itr_sentences != source_sentences.end(); itr_sentences++) {
-      Sentence sent = *itr_sentences;
+    for (const auto &sent : target_sentences) {
       // ignore insertions and deletions
-      if (sent.getPosition() == -1 || sent.getPosition() == -1) {
+      if (sent.getPosition() == -1) {
       } else {
         pair<long int, vector<string> > source_entry(sent.getPosition(),
                                                      sent.getToken());
@@ -292,11 +289,10 @@ void Writer::writeAlignedData(const string path_to_source_untokenized_data,
       }
     }
 
-    for (itr_sentences = target_sentences.begin();
-         itr_sentences != target_sentences.end(); itr_sentences++) {
-      Sentence sent = *itr_sentences;
+    for (const auto &sent : target_sentences) {
       // ignore insertions and deletions
-      if (sent.getPosition() == -1 || sent.getPosition() == -1) {
+      if (sent.getPosition() == -1) {
+    	  cout << "Skipping target " << sent.getPosition() << endl;
       } else {
         pair<long int, vector<string> > target_entry(sent.getPosition(),
                                                      sent.getToken());
