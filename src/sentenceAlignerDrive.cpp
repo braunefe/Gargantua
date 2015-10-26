@@ -170,7 +170,7 @@ int main() {
 #pragma omp parallel for schedule(dynamic)
   for (int file_idx = 0; file_idx < n_files; ++file_idx) {
     const string filename = fn_vector[file_idx];
-    cout << "Processing " << file_idx << " / " << n_files
+    cout << "[1/2] Processing " << file_idx << " / " << n_files
          << " Filename : " << filename << endl;
 
     // split europal-like file into paragraphs. In case of wrong tagging
@@ -347,7 +347,7 @@ int main() {
 #pragma omp parallel for schedule(dynamic)
   for (int file_idx = 0; file_idx < n_files; ++file_idx) {
     const string filename = fn_vector[file_idx];
-    cout << "Processing " << file_idx << " / " << n_files
+    cout << "[2/2] Processing " << file_idx << " / " << n_files
          << " Filename : " << filename << endl;
 
     stack<Data> paragraphs = Reader::splitEuroparlDocumentIntoParagraphs(
@@ -389,7 +389,7 @@ int main() {
         alignment, my_restored_length_distributions,
         local_lexical_distributions);
 
-    // write alignments using sentence ids
+// write alignments using sentence ids
 #pragma omp critical
     Writer::writeAlignment(filename, alignments, alignment);
   }  // end of while
