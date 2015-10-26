@@ -6,7 +6,7 @@ OBJS = utilities.o reader.o writer.o sentence.o data.o lengthDistributions.o lex
 CC = g++
 DEBUG = -g 
 CFLAGS = -std=c++11 -O2 -fopenmp -Wall  -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG) -fopenmp
+LFLAGS = -Wall $(DEBUG) -fopenmp -ltcmalloc
 INCLUDE_PATH =  /usr/include/
 LIB_PATH = /usr/lib/
 REGEX_LIB =  boost_regex
