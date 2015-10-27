@@ -8,12 +8,17 @@ void Reader::makeIdTaggs(string path_source, string path_target,
   filenames = Utilities::findAllFiles(
       path_source);  // filenames are the same in source and target directories
 
-  cout << "files found" << endl;
-
   // Tag Europarl Untokenized data
-  while (!filenames.empty()) {
-    string filename = filenames.top();
-    filenames.pop();
+  auto fn_vector = Utilities::stackToVector(filenames);
+  int n_files = static_cast<int>(fn_vector.size());
+  cout << "Tagging " << n_files << " files" << endl;
+
+#pragma omp parallel for schedule(dynamic)
+  for (int file_idx = 0; file_idx < n_files; ++file_idx) {
+    const string filename = fn_vector[file_idx];
+    cout << "Tagging " << file_idx << " / " << n_files
+         << " Filename : " << filename << endl;
+
 
     // tagg each file
     Reader::taggDocument(

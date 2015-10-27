@@ -50,7 +50,7 @@ class Utilities {
   static pair<int, string> extractParagraphNumber(string paragraph_name);
 
   // finds files with .txt expansion
-  static string findEuroparlFile(string path, string file_name);
+  static string findEuroparlFile(const string& path, const string& file_name);
 
   // converts stack to vector
   template <class T>

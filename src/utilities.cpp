@@ -100,6 +100,7 @@ stack<string> Utilities::findAllFiles(const bfs::path& p) {
       }
     }
   }
+  cout << filenames.size() << " files found" << endl;
   return filenames;
 }
 
@@ -147,7 +148,7 @@ pair<int, string> Utilities::extractParagraphNumber(string paragraph_name) {
 }
 
 // finds files with .txt expansion
-string Utilities::findEuroparlFile(const string path, const string file_name) {
+string Utilities::findEuroparlFile(const string& path, const string& file_name) {
   bfs::path europarl_name = path;
   europarl_name /= file_name + string(".txt");
   if (!checkFileExists(europarl_name.string())) {
