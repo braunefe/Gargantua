@@ -68,7 +68,10 @@ stack<string> Utilities::findAllFiles(const bfs::path& p) {
     size_t pos = filename_complete.rfind(".");  // position of last . in string
     if (pos != string::npos) {
       file_name = filename_complete.substr(0, pos);  // get from beginning to .
-      filenames.push(file_name);
+      // skip filenames starting with .
+      if (file_name.size() > 0 && file_name.find(".") != 0) {
+          filenames.push(file_name);
+      }
     }
   }
 
@@ -91,7 +94,10 @@ stack<string> Utilities::findAllFiles(const bfs::path& p) {
       } else {
         file_name = filename_complete;
       }
-      filenames.push(file_name);
+      // skip filenames starting with .
+      if (file_name.size() > 0 && file_name.find(".") != 0) {
+          filenames.push(file_name);
+      }
     }
   }
   return filenames;
