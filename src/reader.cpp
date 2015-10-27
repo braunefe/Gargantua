@@ -445,7 +445,7 @@ stack<Data> Reader::splitEuroparlDocumentIntoParagraphs(const char *filename1,
           line.clear();
           read_buffer += "\n";
 
-          if (getline(fin1, line) > 0) {
+          if (getline(fin1, line)) {
             read_buffer += line;
             line.clear();
             read_buffer += "\n";
