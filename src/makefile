@@ -7,7 +7,7 @@ CC = g++
 DEBUG = -g 
 CFLAGS = -std=c++11 -O2 -fopenmp -Wfatal-errors -Wall -c $(DEBUG)
 #  -Wextra -Wpedantic -Wconversion -Wshadow  
-LFLAGS = -Wall $(DEBUG) -fopenmp 
+LFLAGS = -Wall $(DEBUG) -fopenmp -ltcmalloc
 #-ltcmalloc
 INCLUDE_PATH =  /usr/include/
 LIB_PATH = /usr/lib/
