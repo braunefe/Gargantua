@@ -331,9 +331,6 @@ int main() {
   cout << "Loading t-table..." << endl;
   translation_table = LexicalDistributions::loadTTable(renumbered_table);
 
-  // output alignment
-  stack<Chunk> alignment;
-
   cout << "getting files... " << endl;
   filenames = Utilities::findAllFiles(filtered_source);
 
@@ -377,7 +374,7 @@ int main() {
 
     cout << "Making initial alignment... " << endl;  // this is the slowest step
     Aligner myAligner = Aligner();
-    alignment = myAligner.makeInitialAlignment(
+    stack<Chunk> alignment = myAligner.makeInitialAlignment(
         paragraph_vec, my_restored_length_distributions,
         local_lexical_distributions, flat_diagonals);
 
