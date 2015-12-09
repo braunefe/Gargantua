@@ -3,8 +3,7 @@ Sentence Aligner presented in :
 Fabienne Braune, Alexander Fraser (2010). Improved Unsupervised Sentence Alignment for Symmetrical and Asymmetrical Parallel Corpora. In Proceedings of the 23rd International Conference on Computational Linguistics (COLING) - Posters, Beijing, China, August. 
 
 If you have any problems using this software please contact : 
-http://sourceforge.net/projects/gargantua/
-gargantua-support@lists.sourceforge.net
+braune.fabienne@gmail.com
 
 This sentence aligner is optimized for the Europarl tagging format. 
 If your corpus is split into chapters, speakers or paragraphs, please convert your tags to the Europarl format.
